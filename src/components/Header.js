@@ -13,7 +13,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul className="flex p-4 m-4 align-middle">
-          <li className="px-4">Online Status: {online ? "🟢" : "🔴"}</li>
+          <li className="px-4">Online Status: {online ? "✅" : "🔴"}</li>
           <li className="px-4">
             <Link to="/">Home</Link>
           </li>
