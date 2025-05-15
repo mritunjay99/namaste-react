@@ -1,15 +1,16 @@
 import RestaurantCard, { useWithPromotedLabel } from "./RestaurantCard";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 import Shimmer from "./Shimmer";
 
-const Body = () => {
+const Body = ({}) => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const onLineStatus = useOnlineStatus();
-
+  const { setUserName } = useContext(UserContext);
   const RestaurantPromoted = useWithPromotedLabel(RestaurantCard);
   if (onLineStatus === false) {
     return <h1>Looks like you are offline!;</h1>;
@@ -49,6 +50,7 @@ const Body = () => {
         <div className="search">
           <input
             type="text"
+            data-testid="searchInput"
             className="border border-solid border-black rounded-full px-4 "
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
@@ -76,6 +78,11 @@ const Body = () => {
           >
             Top Rated Restaurants
           </button>
+          <input
+            type="text"
+            className="px-4 border border-black"
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex flex-wrap">

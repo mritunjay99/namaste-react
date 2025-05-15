@@ -19,7 +19,7 @@ class UserClass extends React.Component {
       "https://api.github.com/users/mritunjayYadav88",
       {
         headers: {
-          Authorization: "*************",
+          Authorization: "Bearer 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",
         },
       }
     );

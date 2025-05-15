@@ -5,12 +5,17 @@ import Body from "./Body";
 import About from "./About";
 import Contact from "./Contact";
 import RestaurantMenu from "./RestaurantMenu";
+import Cart from "./Cart";
+import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 // import Grocery from "./Grocery";
 import Error from "./Error";
+import UserContext from "../utils/UserContext";
+import { useState } from "react";
+import appStore from "../utils/appStore";
 
 //React Element
-const jsxHeading = <h1 id="heading">Hi there!</h1>;
+// const jsxHeading = <h1 id="heading">Hi there!</h1>;
 
 const styleCard = {
   backgroundColor: "#f0f0f0",
@@ -23,11 +28,16 @@ const styleCard = {
 const Grocery = lazy(() => import("./Grocery"));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState("Mritunjay");
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -60,6 +70,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,

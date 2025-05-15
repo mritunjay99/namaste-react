@@ -6,8 +6,9 @@ const styleCard = {
 
 const RestaurantCard = (props) => {
   const { resData } = props;
+  console.log(resData);
   return (
-    <div className="p-4 m-4 w-[240px] rounded-lg bg-gray-200 h-[350px] hover:bg-lime-200">
+    <div data-testid="resCard" className="p-4 m-4 w-[240px] rounded-lg bg-gray-200 h-[350px] hover:bg-lime-200">
       <img
         className="rounded-lg h-36 w-full"
         src={CDN_URL + resData.info.cloudinaryImageId}
